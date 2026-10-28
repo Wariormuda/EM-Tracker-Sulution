@@ -1,431 +1,488 @@
-<!-- Header / Banner Utama -->
-<header class="relative overflow-hidden border-b border-yellow-600/30 bg-black/70 backdrop-blur-md sticky top-0 z-40">
-    <div class="max-w-4xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-400 via-amber-600 to-yellow-700 flex items-center justify-center shadow-lg gold-glow border border-yellow-300/40">
-                <i class="fa-solid fa-crown text-black text-xl"></i>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EM Tracker Solution - Target & Achievement Tracker</title>
+    <!-- Menggunakan Tailwind CSS v3 CDN yang Lebih Stabil untuk GitHub Pages -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Cinzel & Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #050505;
+            color: #f3f4f6;
+            background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
+                              radial-gradient(circle at 10% 90%, rgba(180, 83, 9, 0.08) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+        .luxury-title {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FDE047 0%, #CA8A04 50%, #EAB308 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border {
+            border-color: rgba(234, 179, 8, 0.3);
+        }
+        .gold-border:focus {
+            border-color: #EAB308;
+            box-shadow: 0 0 15px rgba(234, 179, 8, 0.2);
+        }
+        .gold-glow {
+            box-shadow: 0 0 25px rgba(202, 138, 4, 0.25);
+        }
+        .card-wealth {
+            background: linear-gradient(145deg, #121212 0%, #1a1814 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+        .card-wealth:hover {
+            border-color: rgba(234, 179, 8, 0.5);
+            box-shadow: 0 10px 40px 0 rgba(202, 138, 4, 0.15);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #854d0e; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #a16207; }
+    </style>
+</head>
+<body class="min-h-screen pb-16">
+
+    <!-- Header / Banner Utama -->
+    <header class="relative overflow-hidden border-b border-yellow-600/30 bg-black/60 backdrop-blur-md sticky top-0 z-40">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-400 via-amber-600 to-yellow-700 flex items-center justify-center shadow-lg gold-glow border border-yellow-300/40">
+                    <i class="fa-solid fa-crown text-black text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="luxury-title text-2xl font-black tracking-wider gold-gradient-text">EM TRACKER SOLUTION</h1>
+                    <p class="text-xs text-yellow-500/80 font-medium tracking-wide">EM = Emas & Money (Inisial Pembuat)</p>
+                </div>
             </div>
-            <div>
-                <h1 class="luxury-title text-2xl font-black tracking-wider gold-gradient-text">EM TRACKER SOLUTION</h1>
-                <p class="text-[10px] text-yellow-500/90 font-semibold tracking-wider uppercase">EM = Emas & Money (Inisial Pembuat)</p>
+            <div class="flex items-center gap-2">
+                <div class="bg-amber-950/40 border border-yellow-600/30 px-3 py-1.5 rounded-lg flex items-center gap-2 text-xs text-yellow-300">
+                    <i class="fa-solid fa-coins text-yellow-400"></i>
+                    <span>Empire of Wealth</span>
+                </div>
+                <button onclick="openAddGoalModal()" class="bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 hover:from-yellow-400 hover:to-yellow-500 text-black font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2 shadow-lg transition transform active:scale-95 cursor-pointer">
+                    <i class="fa-solid fa-plus font-bold"></i> Target Utama Baru
+                </button>
             </div>
         </div>
-        <div class="flex items-center gap-2">
-            <div class="bg-amber-950/50 border border-yellow-600/30 px-3 py-1.5 rounded-lg flex items-center gap-2 text-xs text-yellow-300">
-                <i class="fa-solid fa-sack-dollar text-yellow-400"></i>
-                <span>Empire of Wealth</span>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="max-w-4xl mx-auto px-4 mt-6">
+        
+        <!-- Motivational Wealth Quote & Stats -->
+        <section class="card-wealth rounded-2xl p-5 mb-6 relative overflow-hidden">
+            <div class="absolute -right-6 -bottom-6 opacity-10 text-9xl text-yellow-500 pointer-events-none">
+                <i class="fa-solid fa-vault"></i>
             </div>
-            <button onclick="openAddGoalModal()" class="bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 hover:from-yellow-400 hover:to-yellow-500 text-black font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2 shadow-lg transition transform active:scale-95 cursor-pointer">
-                <i class="fa-solid fa-plus font-bold"></i> Target Utama Baru
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
+                <div>
+                    <div class="flex items-center gap-2 text-yellow-400 text-xs font-semibold uppercase tracking-wider mb-1">
+                        <i class="fa-solid fa-fire text-amber-500 animate-pulse"></i> Visi Pejuang Kekayaan (Emas & Money)
+                    </div>
+                    <h2 id="quote-text" class="text-lg sm:text-xl font-bold text-gray-100 luxury-title">"Setiap langkah kecil adalah investasi menuju kebebasan finansial mutlak."</h2>
+                </div>
+                <div class="flex items-center gap-3 bg-black/40 border border-yellow-500/20 px-4 py-2.5 rounded-xl shrink-0">
+                    <div class="text-center">
+                        <span id="stat-completed" class="text-lg font-black text-yellow-400">0</span>
+                        <p class="text-[10px] text-gray-400 uppercase">Tuntas</p>
+                    </div>
+                    <div class="h-8 w-[1px] bg-yellow-600/30"></div>
+                    <div class="text-center">
+                        <span id="stat-total" class="text-lg font-black text-gray-200">0</span>
+                        <p class="text-[10px] text-gray-400 uppercase">Total Target</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Global Progress Bar -->
+            <div class="mt-4">
+                <div class="flex justify-between text-xs text-yellow-300/80 mb-1.5 font-medium">
+                    <span>Akumulasi Capaian Kekayaan</span>
+                    <span id="progress-percentage">0%</span>
+                </div>
+                <div class="w-full bg-black/60 rounded-full h-3 p-0.5 border border-yellow-600/30 overflow-hidden">
+                    <div id="global-progress-bar" class="bg-gradient-to-r from-yellow-600 via-amber-400 to-yellow-300 h-full rounded-full transition-all duration-500 shadow-inner" style="width: 0%"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daftar Target Utama -->
+        <section id="goals-container" class="space-y-6">
+            <!-- Render via JavaScript -->
+        </section>
+
+        <!-- Kosong State -->
+        <div id="empty-state" class="hidden text-center py-16 card-wealth rounded-2xl border-dashed">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-yellow-400 text-2xl">
+                <i class="fa-solid fa-gem"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-200 luxury-title">Belum Ada Target Kekayaan Tercatat</h3>
+            <p class="text-sm text-gray-400 max-w-md mx-auto mt-1 mb-6">Mulailah rancang langkah sukses dan target finansial Anda hari ini demi masa depan yang berkelimpahan.</p>
+            <button onclick="openAddGoalModal()" class="bg-gradient-to-r from-yellow-500 to-amber-600 text-black font-bold px-5 py-2.5 rounded-xl text-xs shadow-lg hover:brightness-110 transition">
+                + Buat Target Utama Pertama
             </button>
         </div>
-    </div>
-</header>
 
-<!-- Konten Utama -->
-<main class="max-w-4xl mx-auto px-4 mt-6">
-    
-    <!-- Motivational Wealth Quote & Stats -->
-    <section class="card-wealth rounded-2xl p-5 mb-6 relative overflow-hidden">
-        <div class="absolute -right-6 -bottom-6 opacity-10 text-9xl text-yellow-500 pointer-events-none">
-            <i class="fa-solid fa-coins"></i>
-        </div>
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
-            <div>
-                <div class="flex items-center gap-2 text-yellow-400 text-xs font-semibold uppercase tracking-wider mb-1">
-                    <i class="fa-solid fa-fire text-amber-500 animate-pulse"></i> Visi Pejuang Kekayaan (Emas & Money)
+    </main>
+
+    <!-- Modal Form: Tambah / Edit Target Utama -->
+    <div id="goal-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="card-wealth rounded-2xl w-full max-w-md p-6 border border-yellow-500/40 shadow-2xl">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="goal-modal-title" class="luxury-title text-lg font-bold text-yellow-400">Tambah Target Utama</h3>
+                <button onclick="closeGoalModal()" class="text-gray-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="goal-form" onsubmit="saveGoal(event)">
+                <input type="hidden" id="goal-id">
+                <div class="mb-4">
+                    <label class="block text-xs font-semibold text-yellow-300/80 mb-1.5 uppercase">Judul Target / Visi Sukses</label>
+                    <input type="text" id="goal-title-input" required placeholder="Contoh: Capai Omset 100 Juta Pertama..." class="w-full bg-black/60 border gold-border rounded-xl px-4 py-3 text-sm text-gray-100 placeholder-gray-600 focus:outline-none">
                 </div>
-                <h2 id="quote-text" class="text-lg sm:text-xl font-bold text-gray-100 luxury-title">"Setiap target yang tuntas adalah tumpukan emas dan pundi-pundi uang menuju kebebasan mutlak."</h2>
-            </div>
-            <div class="flex items-center gap-3 bg-black/50 border border-yellow-500/20 px-4 py-2.5 rounded-xl shrink-0">
-                <div class="text-center">
-                    <span id="stat-completed" class="text-lg font-black text-yellow-400">0</span>
-                    <p class="text-[10px] text-gray-400 uppercase">Tuntas</p>
+                <div class="mb-5">
+                    <label class="block text-xs font-semibold text-yellow-300/80 mb-1.5 uppercase">Deskripsi / Catatan Kejayaan</label>
+                    <textarea id="goal-desc-input" rows="3" placeholder="Deskripsikan pencapaian atau impian ini secara detail..." class="w-full bg-black/60 border gold-border rounded-xl px-4 py-3 text-sm text-gray-100 placeholder-gray-600 focus:outline-none resize-none"></textarea>
                 </div>
-                <div class="h-8 w-[1px] bg-yellow-600/30"></div>
-                <div class="text-center">
-                    <span id="stat-total" class="text-lg font-black text-gray-200">0</span>
-                    <p class="text-[10px] text-gray-400 uppercase">Total Target</p>
+                <div class="flex justify-end gap-3">
+                    <button type="button" onclick="closeGoalModal()" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-gray-800 text-gray-300 hover:bg-gray-700 transition">Batal</button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-yellow-500 to-amber-600 text-black hover:brightness-110 transition shadow-lg">Simpan Target</button>
                 </div>
-            </div>
+            </form>
         </div>
-
-        <!-- Global Progress Bar -->
-        <div class="mt-4">
-            <div class="flex justify-between text-xs text-yellow-300/80 mb-1.5 font-medium">
-                <span>Akumulasi Capaian Kekayaan</span>
-                <span id="progress-percentage">0%</span>
-            </div>
-            <div class="w-full bg-black/60 rounded-full h-3 p-0.5 border border-yellow-600/30 overflow-hidden">
-                <div id="global-progress-bar" class="bg-gradient-to-r from-yellow-600 via-amber-400 to-yellow-300 h-full rounded-full transition-all duration-500 shadow-inner" style="width: 0%"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Daftar Target Utama -->
-    <section id="goals-container" class="space-y-6">
-        <!-- Render via JavaScript -->
-    </section>
-
-    <!-- Kosong State -->
-    <div id="empty-state" class="hidden text-center py-16 card-wealth rounded-2xl border-dashed">
-        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-yellow-400 text-2xl">
-            <i class="fa-solid fa-vault"></i>
-        </div>
-        <h3 class="text-lg font-bold text-gray-200 luxury-title">Brankas Target Masih Kosong</h3>
-        <p class="text-sm text-gray-400 max-w-md mx-auto mt-1 mb-6">Mulai bangun empire sukses dan finansial Anda hari ini dengan menambahkan target utama.</p>
-        <button onclick="openAddGoalModal()" class="bg-gradient-to-r from-yellow-500 to-amber-600 text-black font-bold px-5 py-2.5 rounded-xl text-xs shadow-lg hover:brightness-110 transition">
-            + Buat Target Utama Pertama
-        </button>
     </div>
 
-</main>
-
-<!-- Modal Form: Tambah / Edit Target Utama -->
-<div id="goal-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="card-wealth rounded-2xl w-full max-w-md p-6 border border-yellow-500/40 shadow-2xl">
-        <div class="flex justify-between items-center mb-4">
-            <h3 id="goal-modal-title" class="luxury-title text-lg font-bold text-yellow-400">Tambah Target Utama</h3>
-            <button onclick="closeGoalModal()" class="text-gray-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+    <!-- Modal Form: Tambah / Edit Langkah Kecil -->
+    <div id="step-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="card-wealth rounded-2xl w-full max-w-md p-6 border border-yellow-500/40 shadow-2xl">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="step-modal-title" class="luxury-title text-lg font-bold text-yellow-400">Tambah Langkah Kecil</h3>
+                <button onclick="closeStepModal()" class="text-gray-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="step-form" onsubmit="saveStep(event)">
+                <input type="hidden" id="step-goal-id">
+                <input type="hidden" id="step-id">
+                <div class="mb-5">
+                    <label class="block text-xs font-semibold text-yellow-300/80 mb-1.5 uppercase">Langkah Konkret (Emas & Money)</label>
+                    <input type="text" id="step-title-input" required placeholder="Contoh: Riset supplier, buat iklan pertama..." class="w-full bg-black/60 border gold-border rounded-xl px-4 py-3 text-sm text-gray-100 placeholder-gray-600 focus:outline-none">
+                </div>
+                <div class="flex justify-end gap-3">
+                    <button type="button" onclick="closeStepModal()" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-gray-800 text-gray-300 hover:bg-gray-700 transition">Batal</button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-yellow-500 to-amber-600 text-black hover:brightness-110 transition shadow-lg">Simpan Langkah</button>
+                </div>
+            </form>
         </div>
-        <form id="goal-form" onsubmit="saveGoal(event)">
-            <input type="hidden" id="goal-id">
-            <div class="mb-4">
-                <label class="block text-xs font-semibold text-yellow-300/80 mb-1.5 uppercase">Judul Target / Visi Emas & Money</label>
-                <input type="text" id="goal-title-input" required placeholder="Contoh: Capai Omset Bisnis 100 Juta..." class="w-full bg-black/60 border gold-border rounded-xl px-4 py-3 text-sm text-gray-100 placeholder-gray-600 focus:outline-none">
-            </div>
-            <div class="mb-5">
-                <label class="block text-xs font-semibold text-yellow-300/80 mb-1.5 uppercase">Catatan / Detail Pencapaian</label>
-                <textarea id="goal-desc-input" rows="3" placeholder="Deskripsikan target atau aset yang ingin diraih..." class="w-full bg-black/60 border gold-border rounded-xl px-4 py-3 text-sm text-gray-100 placeholder-gray-600 focus:outline-none resize-none"></textarea>
-            </div>
-            <div class="flex justify-end gap-3">
-                <button type="button" onclick="closeGoalModal()" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-gray-800 text-gray-300 hover:bg-gray-700 transition">Batal</button>
-                <button type="submit" class="px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-yellow-500 to-amber-600 text-black hover:brightness-110 transition shadow-lg">Simpan Target</button>
-            </div>
-        </form>
     </div>
-</div>
 
-<!-- Modal Form: Tambah / Edit Langkah Kecil (Sub-step) -->
-<div id="step-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="card-wealth rounded-2xl w-full max-w-md p-6 border border-yellow-500/40 shadow-2xl">
-        <div class="flex justify-between items-center mb-4">
-            <h3 id="step-modal-title" class="luxury-title text-lg font-bold text-yellow-400">Tambah Langkah Kecil</h3>
-            <button onclick="closeStepModal()" class="text-gray-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <form id="step-form" onsubmit="saveStep(event)">
-            <input type="hidden" id="step-goal-id">
-            <input type="hidden" id="step-id">
-            <div class="mb-5">
-                <label class="block text-xs font-semibold text-yellow-300/80 mb-1.5 uppercase">Aksi Konkret</label>
-                <input type="text" id="step-title-input" required placeholder="Contoh: Riset supplier, buat iklan pertama..." class="w-full bg-black/60 border gold-border rounded-xl px-4 py-3 text-sm text-gray-100 placeholder-gray-600 focus:outline-none">
-            </div>
-            <div class="flex justify-end gap-3">
-                <button type="button" onclick="closeStepModal()" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-gray-800 text-gray-300 hover:bg-gray-700 transition">Batal</button>
-                <button type="submit" class="px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-yellow-500 to-amber-600 text-black hover:brightness-110 transition shadow-lg">Simpan Langkah</button>
-            </div>
-        </form>
-    </div>
-</div>
+    <!-- JavaScript Aplikasi -->
+    <script>
+        const STORAGE_KEY = 'em_tracker_solution_wealth_data';
 
-<!-- JavaScript Aplikasi -->
-<script>
-    const STORAGE_KEY = 'em_tracker_solution_wealth_data';
+        let goals = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [
+            {
+                id: '1',
+                title: 'Membangun Empire Bisnis & Kebebasan Finansial',
+                description: 'Fokus penuh pada kedisiplinan eksekusi target, manajemen toko, dan akumulasi kekayaan.',
+                completed: false,
+                createdAt: '2026-03-01 08:00',
+                completedAt: null,
+                steps: [
+                    { id: 's1', title: 'Riset produk dan supplier terpercaya', completed: true, createdAt: '2026-03-01 09:00', completedAt: '2026-03-02 10:30' },
+                    { id: 's2', title: 'Deploy aplikasi EM Tracker Solution', completed: true, createdAt: '2026-03-01 10:00', completedAt: '2026-03-03 14:15' }
+                ]
+            }
+        ];
 
-    let goals = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [
-        {
-            id: '1',
-            title: 'Membangun Empire Bisnis & Kebebasan Finansial',
-            description: 'Fokus penuh pada kedisiplinan eksekusi target, manajemen toko, dan akumulasi kekayaan.',
-            completed: false,
-            createdAt: '2026-03-01 08:00',
-            completedAt: null,
-            steps: [
-                { id: 's1', title: 'Riset produk dan supplier terpercaya', completed: true, createdAt: '2026-03-01 09:00', completedAt: '2026-03-02 10:30' },
-                { id: 's2', title: 'Deploy aplikasi EM Tracker Solution', completed: true, createdAt: '2026-03-01 10:00', completedAt: '2026-03-03 14:15' },
-                { id: 's3', title: 'Eksekusi pemasaran & optimasi penjualan', completed: false, createdAt: '2026-03-01 10:30', completedAt: null }
-            ]
-        }
-    ];
-
-    function saveData() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(goals));
-        renderApp();
-    }
-
-    function getFormattedDate() {
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, '0');
-        const day = String(now.getDate()).padStart(2, '0');
-        const hours = String(now.getHours()).padStart(2, '0');
-        const mins = String(now.getMinutes()).padStart(2, '0');
-        return `${year}-${month}-${day} ${hours}:${mins}`;
-    }
-
-    function renderApp() {
-        const container = document.getElementById('goals-container');
-        const emptyState = document.getElementById('empty-state');
-        container.innerHTML = '';
-
-        if (goals.length === 0) {
-            emptyState.classList.remove('hidden');
-            updateStats(0, 0);
-            return;
-        } else {
-            emptyState.classList.add('hidden');
+        function saveData() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(goals));
+            renderApp();
         }
 
-        let totalStepsGlobal = 0;
-        let completedStepsGlobal = 0;
+        function getFormattedDate() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const mins = String(now.getMinutes()).padStart(2, '0');
+            return `${year}-${month}-${day} ${hours}:${mins}`;
+        }
 
-        goals.forEach(goal => {
-            let goalStepsTotal = goal.steps.length;
-            let goalStepsCompleted = goal.steps.filter(s => s.completed).length;
+        function renderApp() {
+            const container = document.getElementById('goals-container');
+            const emptyState = document.getElementById('empty-state');
+            container.innerHTML = '';
 
-            totalStepsGlobal += goalStepsTotal;
-            completedStepsGlobal += goalStepsCompleted;
-
-            let goalProgress = goalStepsTotal > 0 ? Math.round((goalStepsCompleted / goalStepsTotal) * 100) : (goal.completed ? 100 : 0);
-
-            const card = document.createElement('div');
-            card.className = `card-wealth rounded-2xl p-5 sm:p-6 transition-all duration-300 relative overflow-hidden ${goal.completed ? 'border-yellow-500/70 bg-gradient-to-br from-[#121212] to-[#221c0e]' : ''}`;
-            
-            let stepsHtml = '';
-            if (goal.steps.length === 0) {
-                stepsHtml = `<p class="text-xs text-gray-500 italic py-2">Belum ada langkah kecil. Tambahkan aksi konkret menuju sukses!</p>`;
+            if (goals.length === 0) {
+                emptyState.classList.remove('hidden');
+                updateStats(0, 0, 0);
+                return;
             } else {
-                goal.steps.forEach(step => {
-                    stepsHtml += `
-                        <div class="flex items-center justify-between bg-black/50 border border-yellow-500/10 hover:border-yellow-500/30 p-3 rounded-xl transition group">
-                            <label class="flex items-center gap-3 cursor-pointer flex-1 mr-2">
-                                <input type="checkbox" ${step.completed ? 'checked' : ''} onchange="toggleStep('${goal.id}', '${step.id}')" class="w-4 h-4 accent-amber-500 rounded cursor-pointer">
-                                <span class="text-sm ${step.completed ? 'line-through text-gray-500' : 'text-gray-200'}">${step.title}</span>
-                            </label>
-                            <div class="flex items-center gap-3 shrink-0">
-                                <span class="text-[10px] text-yellow-500/70 hidden sm:inline">${step.completed ? 'Selesai: ' + step.completedAt : 'Dibuat: ' + step.createdAt}</span>
-                                <div class="opacity-0 group-hover:opacity-100 transition flex items-center gap-1.5">
-                                    <button onclick="openEditStepModal('${goal.id}', '${step.id}', '${step.title.replace(/'/g, "\\'")}')" class="text-xs text-yellow-400 hover:text-yellow-300 p-1"><i class="fa-solid fa-pen"></i></button>
-                                    <button onclick="deleteStep('${goal.id}', '${step.id}')" class="text-xs text-red-400 hover:text-red-300 p-1"><i class="fa-solid fa-trash"></i></button>
+                emptyState.classList.add('hidden');
+            }
+
+            let totalStepsGlobal = 0;
+            let completedStepsGlobal = 0;
+
+            goals.forEach(goal => {
+                let goalStepsTotal = goal.steps.length;
+                let goalStepsCompleted = goal.steps.filter(s => s.completed).length;
+
+                totalStepsGlobal += goalStepsTotal;
+                completedStepsGlobal += goalStepsCompleted;
+
+                let goalProgress = goalStepsTotal > 0 ? Math.round((goalStepsCompleted / goalStepsTotal) * 100) : (goal.completed ? 100 : 0);
+
+                const card = document.createElement('div');
+                card.className = `card-wealth rounded-2xl p-5 sm:p-6 transition-all duration-300 relative overflow-hidden ${goal.completed ? 'border-yellow-500/60 bg-gradient-to-br from-[#121212] to-[#1f1a0e]' : ''}`;
+                
+                let stepsHtml = '';
+                if (goal.steps.length === 0) {
+                    stepsHtml = `<p class="text-xs text-gray-500 italic py-2">Belum ada langkah kecil. Tambahkan langkah untuk mulai mendaki menuju sukses!</p>`;
+                } else {
+                    goal.steps.forEach(step => {
+                        stepsHtml += `
+                            <div class="flex items-center justify-between bg-black/40 border border-yellow-500/10 hover:border-yellow-500/30 p-3 rounded-xl transition group">
+                                <label class="flex items-center gap-3 cursor-pointer flex-1 mr-2">
+                                    <input type="checkbox" ${step.completed ? 'checked' : ''} onchange="toggleStep('${goal.id}', '${step.id}')" class="w-4 h-4 accent-amber-500 rounded cursor-pointer">
+                                    <span class="text-sm ${step.completed ? 'line-through text-gray-500' : 'text-gray-200'}">${step.title}</span>
+                                </label>
+                                <div class="flex items-center gap-3 shrink-0">
+                                    <span class="text-[10px] text-yellow-500/70 hidden sm:inline">${step.completed ? 'Selesai: ' + step.completedAt : 'Dibuat: ' + step.createdAt}</span>
+                                    <div class="opacity-0 group-hover:opacity-100 transition flex items-center gap-1.5">
+                                        <button onclick="openEditStepModal('${goal.id}', '${step.id}', '${step.title.replace(/'/g, "\\'")}')" class="text-xs text-yellow-400 hover:text-yellow-300 p-1"><i class="fa-solid fa-pen"></i></button>
+                                        <button onclick="deleteStep('${goal.id}', '${step.id}')" class="text-xs text-red-400 hover:text-red-300 p-1"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
                                 </div>
                             </div>
+                        `;
+                    });
+                }
+
+                card.innerHTML = `
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
+                        <div class="flex items-start gap-3 flex-1">
+                            <input type="checkbox" ${goal.completed ? 'checked' : ''} onchange="toggleGoal('${goal.id}')" class="w-5 h-5 accent-amber-500 rounded mt-1 cursor-pointer">
+                            <div>
+                                <h3 class="luxury-title text-base sm:text-lg font-bold ${goal.completed ? 'line-through text-yellow-600' : 'text-yellow-400'}">${goal.title}</h3>
+                                <p class="text-xs text-gray-400 mt-0.5">${goal.description || 'Tidak ada deskripsi.'}</p>
+                            </div>
                         </div>
-                    `;
-                });
-            }
-
-            card.innerHTML = `
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
-                    <div class="flex items-start gap-3 flex-1">
-                        <input type="checkbox" ${goal.completed ? 'checked' : ''} onchange="toggleGoal('${goal.id}')" class="w-5 h-5 accent-amber-500 rounded mt-1 cursor-pointer">
-                        <div>
-                            <h3 class="luxury-title text-base sm:text-lg font-bold ${goal.completed ? 'line-through text-yellow-600' : 'text-yellow-400'}">${goal.title}</h3>
-                            <p class="text-xs text-gray-400 mt-0.5">${goal.description || 'Tidak ada deskripsi.'}</p>
+                        <div class="flex items-center gap-2 self-end sm:self-auto">
+                            <span class="text-[10px] px-2.5 py-1 rounded-full ${goal.completed ? 'bg-amber-500/20 text-yellow-300 border border-yellow-500/40' : 'bg-black/60 text-gray-400 border border-yellow-600/20'}">
+                                ${goal.completed ? '🏆 Tercapai & Kaya' : goalProgress + '% Selesai'}
+                            </span>
+                            <button onclick="openEditGoalModal('${goal.id}')" class="text-xs text-yellow-400 hover:text-yellow-300 bg-black/60 p-2 rounded-lg border border-yellow-600/20"><i class="fa-solid fa-pen"></i></button>
+                            <button onclick="deleteGoal('${goal.id}')" class="text-xs text-red-400 hover:text-red-300 bg-black/60 p-2 rounded-lg border border-red-600/20"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
-                    <div class="flex items-center gap-2 self-end sm:self-auto">
-                        <span class="text-[10px] px-2.5 py-1 rounded-full ${goal.completed ? 'bg-amber-500/20 text-yellow-300 border border-yellow-500/40' : 'bg-black/60 text-gray-400 border border-yellow-600/20'}">
-                            ${goal.completed ? '🏆 Tercapai & Kaya' : goalProgress + '% Selesai'}
-                        </span>
-                        <button onclick="openEditGoalModal('${goal.id}')" class="text-xs text-yellow-400 hover:text-yellow-300 bg-black/60 p-2 rounded-lg border border-yellow-600/20"><i class="fa-solid fa-pen"></i></button>
-                        <button onclick="deleteGoal('${goal.id}')" class="text-xs text-red-400 hover:text-red-300 bg-black/60 p-2 rounded-lg border border-red-600/20"><i class="fa-solid fa-trash"></i></button>
+
+                    <div class="mb-4">
+                        <div class="flex justify-between text-[11px] text-gray-400 mb-1">
+                            <span>Langkah Kecil: ${goalStepsCompleted}/${goalStepsTotal} Tuntas</span>
+                            <span>Dibuat: ${goal.createdAt}</span>
+                        </div>
+                        <div class="w-full bg-black/60 rounded-full h-2 border border-yellow-600/20 overflow-hidden">
+                            <div class="bg-gradient-to-r from-amber-600 to-yellow-400 h-full rounded-full transition-all duration-300" style="width: ${goalProgress}%"></div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="mb-4">
-                    <div class="flex justify-between text-[11px] text-gray-400 mb-1">
-                        <span>Langkah Kecil: ${goalStepsCompleted}/${goalStepsTotal} Tuntas</span>
-                        <span>Dibuat: ${goal.createdAt}</span>
+                    <div class="space-y-2 mt-4 pt-4 border-t border-yellow-600/20">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-semibold text-yellow-300/80 uppercase tracking-wider">Langkah Konkret (Emas & Money)</span>
+                            <button onclick="openAddStepModal('${goal.id}')" class="text-[11px] text-black font-bold bg-gradient-to-r from-yellow-500 to-amber-500 hover:brightness-110 px-3 py-1 rounded-lg flex items-center gap-1 shadow">
+                                <i class="fa-solid fa-plus text-[10px]"></i> Tambah Langkah
+                            </button>
+                        </div>
+                        <div class="space-y-2">
+                            ${stepsHtml}
+                        </div>
                     </div>
-                    <div class="w-full bg-black/60 rounded-full h-2 border border-yellow-600/20 overflow-hidden">
-                        <div class="bg-gradient-to-r from-amber-600 to-yellow-400 h-full rounded-full transition-all duration-300" style="width: ${goalProgress}%"></div>
-                    </div>
-                </div>
+                `;
+                container.appendChild(card);
+            });
 
-                <div class="space-y-2 mt-4 pt-4 border-t border-yellow-600/20">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-xs font-semibold text-yellow-300/80 uppercase tracking-wider">Langkah Konkret (Emas & Money)</span>
-                        <button onclick="openAddStepModal('${goal.id}')" class="text-[11px] text-black font-bold bg-gradient-to-r from-yellow-500 to-amber-500 hover:brightness-110 px-3 py-1 rounded-lg flex items-center gap-1 shadow">
-                            <i class="fa-solid fa-plus text-[10px]"></i> Tambah Langkah
-                        </button>
-                    </div>
-                    <div class="space-y-2">
-                        ${stepsHtml}
-                    </div>
-                </div>
-            `;
-            container.appendChild(card);
-        });
-
-        updateStats(completedStepsGlobal, totalStepsGlobal);
-    }
-
-    function updateStats(completed, total) {
-        document.getElementById('stat-completed').innerText = completed;
-        document.getElementById('stat-total').innerText = total;
-
-        let percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
-        document.getElementById('progress-percentage').innerText = percentage + '%';
-        document.getElementById('global-progress-bar').style.width = percentage + '%';
-
-        const quoteEl = document.getElementById('quote-text');
-        if (percentage === 100 && total > 0) {
-            quoteEl.innerText = '"Luar Biasa! Seluruh Target Empire Kesuksesan Telah Anda Taklukkan!"';
-        } else if (percentage >= 50) {
-            quoteEl.innerText = '"Setengah perjalanan menuju kemakmuran telah dilewati, terus pacu semangat!"';
-        } else {
-            quoteEl.innerText = '"Setiap target yang tuntas adalah tumpukan emas dan pundi-pundi uang menuju kebebasan mutlak."';
+            updateStats(completedStepsGlobal, totalStepsGlobal, goals.length);
         }
-    }
 
-    function openAddGoalModal() {
-        document.getElementById('goal-modal-title').innerText = 'Tambah Target Utama';
-        document.getElementById('goal-id').value = '';
-        document.getElementById('goal-title-input').value = '';
-        document.getElementById('goal-desc-input').value = '';
-        document.getElementById('goal-modal').classList.remove('hidden');
-    }
+        function updateStats(completed, total, totalGoals) {
+            document.getElementById('stat-completed').innerText = completed;
+            document.getElementById('stat-total').innerText = total;
 
-    function openEditGoalModal(id) {
-        const goal = goals.find(g => g.id === id);
-        if (!goal) return;
-        document.getElementById('goal-modal-title').innerText = 'Edit Target Utama';
-        document.getElementById('goal-id').value = goal.id;
-        document.getElementById('goal-title-input').value = goal.title;
-        document.getElementById('goal-desc-input').value = goal.description;
-        document.getElementById('goal-modal').classList.remove('hidden');
-    }
+            let percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+            document.getElementById('progress-percentage').innerText = percentage + '%';
+            document.getElementById('global-progress-bar').style.width = percentage + '%';
 
-    function closeGoalModal() {
-        document.getElementById('goal-modal').classList.add('hidden');
-    }
+            const quoteEl = document.getElementById('quote-text');
+            if (percentage === 100 && total > 0) {
+                quoteEl.innerText = '"Luar Biasa! Puncak Kesuksesan dan Kekayaan Telah Anda Taklukkan!"';
+            } else if (percentage >= 50) {
+                quoteEl.innerText = '"Setengah jalan menuju kemakmuran telah dilewati, terus pacu semangat!"';
+            } else {
+                quoteEl.innerText = '"Setiap langkah kecil adalah investasi menuju kebebasan finansial mutlak."';
+            }
+        }
 
-    function saveGoal(e) {
-        e.preventDefault();
-        const id = document.getElementById('goal-id').value;
-        const title = document.getElementById('goal-title-input').value;
-        const description = document.getElementById('goal-desc-input').value;
+        function openAddGoalModal() {
+            document.getElementById('goal-modal-title').innerText = 'Tambah Target Utama';
+            document.getElementById('goal-id').value = '';
+            document.getElementById('goal-title-input').value = '';
+            document.getElementById('goal-desc-input').value = '';
+            document.getElementById('goal-modal').classList.remove('hidden');
+        }
 
-        if (id) {
+        function openEditGoalModal(id) {
             const goal = goals.find(g => g.id === id);
-            if (goal) {
-                goal.title = title;
-                goal.description = description;
-            }
-        } else {
-            const newGoal = {
-                id: Date.now().toString(),
-                title,
-                description,
-                completed: false,
-                createdAt: getFormattedDate(),
-                completedAt: null,
-                steps: []
-            };
-            goals.unshift(newGoal);
+            if (!goal) return;
+            document.getElementById('goal-modal-title').innerText = 'Edit Target Utama';
+            document.getElementById('goal-id').value = goal.id;
+            document.getElementById('goal-title-input').value = goal.title;
+            document.getElementById('goal-desc-input').value = goal.description;
+            document.getElementById('goal-modal').classList.remove('hidden');
         }
-        saveData();
-        closeGoalModal();
-    }
 
-    function deleteGoal(id) {
-        if (confirm('Yakin ingin menghapus target utama ini?')) {
-            goals = goals.filter(g => g.id !== id);
+        function closeGoalModal() {
+            document.getElementById('goal-modal').classList.add('hidden');
+        }
+
+        function saveGoal(e) {
+            e.preventDefault();
+            const id = document.getElementById('goal-id').value;
+            const title = document.getElementById('goal-title-input').value;
+            const description = document.getElementById('goal-desc-input').value;
+
+            if (id) {
+                const goal = goals.find(g => g.id === id);
+                if (goal) {
+                    goal.title = title;
+                    goal.description = description;
+                }
+            } else {
+                const newGoal = {
+                    id: Date.now().toString(),
+                    title,
+                    description,
+                    completed: false,
+                    createdAt: getFormattedDate(),
+                    completedAt: null,
+                    steps: []
+                };
+                goals.unshift(newGoal);
+            }
+            saveData();
+            closeGoalModal();
+        }
+
+        function deleteGoal(id) {
+            if (confirm('Yakin ingin menghapus target utama ini beserta seluruh langkah kecilnya?')) {
+                goals = goals.filter(g => g.id !== id);
+                saveData();
+            }
+        }
+
+        function toggleGoal(id) {
+            const goal = goals.find(g => g.id === id);
+            if (!goal) return;
+            goal.completed = !goal.completed;
+            goal.completedAt = goal.completed ? getFormattedDate() : null;
+            goal.steps.forEach(s => {
+                s.completed = goal.completed;
+                s.completedAt = goal.completed ? getFormattedDate() : null;
+            });
             saveData();
         }
-    }
 
-    function toggleGoal(id) {
-        const goal = goals.find(g => g.id === id);
-        if (!goal) return;
-        goal.completed = !goal.completed;
-        goal.completedAt = goal.completed ? getFormattedDate() : null;
-        
-        goal.steps.forEach(s => {
-            s.completed = goal.completed;
-            s.completedAt = goal.completed ? getFormattedDate() : null;
-        });
-        saveData();
-    }
+        function openAddStepModal(goalId) {
+            document.getElementById('step-modal-title').innerText = 'Tambah Langkah Kecil';
+            document.getElementById('step-goal-id').value = goalId;
+            document.getElementById('step-id').value = '';
+            document.getElementById('step-title-input').value = '';
+            document.getElementById('step-modal').classList.remove('hidden');
+        }
 
-    function openAddStepModal(goalId) {
-        document.getElementById('step-modal-title').innerText = 'Tambah Langkah Kecil';
-        document.getElementById('step-goal-id').value = goalId;
-        document.getElementById('step-id').value = '';
-        document.getElementById('step-title-input').value = '';
-        document.getElementById('step-modal').classList.remove('hidden');
-    }
+        function openEditStepModal(goalId, stepId, stepTitle) {
+            document.getElementById('step-modal-title').innerText = 'Edit Langkah Kecil';
+            document.getElementById('step-goal-id').value = goalId;
+            document.getElementById('step-id').value = stepId;
+            document.getElementById('step-title-input').value = stepTitle;
+            document.getElementById('step-modal').classList.remove('hidden');
+        }
 
-    function openEditStepModal(goalId, stepId, stepTitle) {
-        document.getElementById('step-modal-title').innerText = 'Edit Langkah Kecil';
-        document.getElementById('step-goal-id').value = goalId;
-        document.getElementById('step-id').value = stepId;
-        document.getElementById('step-title-input').value = stepTitle;
-        document.getElementById('step-modal').classList.remove('hidden');
-    }
+        function closeStepModal() {
+            document.getElementById('step-modal').classList.add('hidden');
+        }
 
-    function closeStepModal() {
-        document.getElementById('step-modal').classList.add('hidden');
-    }
+        function saveStep(e) {
+            e.preventDefault();
+            const goalId = document.getElementById('step-goal-id').value;
+            const stepId = document.getElementById('step-id').value;
+            const title = document.getElementById('step-title-input').value;
 
-    function saveStep(e) {
-        e.preventDefault();
-        const goalId = document.getElementById('step-goal-id').value;
-        const stepId = document.getElementById('step-id').value;
-        const title = document.getElementById('step-title-input').value;
+            const goal = goals.find(g => g.id === goalId);
+            if (!goal) return;
 
-        const goal = goals.find(g => g.id === goalId);
-        if (!goal) return;
-
-        if (stepId) {
-            const step = goal.steps.find(s => s.id === stepId);
-            if (step) {
-                step.title = title;
+            if (stepId) {
+                const step = goal.steps.find(s => s.id === stepId);
+                if (step) {
+                    step.title = title;
+                }
+            } else {
+                const linkStep = {
+                    id: Date.now().toString(),
+                    title,
+                    completed: false,
+                    createdAt: getFormattedDate(),
+                    completedAt: null
+                };
+                goal.steps.push(linkStep);
             }
-        } else {
-            const newStep = {
-                id: Date.now().toString(),
-                title,
-                completed: false,
-                createdAt: getFormattedDate(),
-                completedAt: null
-            };
-            goal.steps.push(newStep);
+
+            evaluateGoalCompletion(goal);
+            saveData();
+            closeStepModal();
         }
 
-        evaluateGoalCompletion(goal);
-        saveData();
-        closeStepModal();
-    }
-
-    function deleteStep(goalId, stepId) {
-        const goal = goals.find(g => g.id === goalId);
-        if (!goal) return;
-        goal.steps = goal.steps.filter(s => s.id !== stepId);
-        evaluateGoalCompletion(goal);
-        saveData();
-    }
-
-    function toggleStep(goalId, stepId) {
-        const goal = goals.find(g => g.id === goalId);
-        if (!goal) return;
-        const step = goal.steps.find(s => s.id === stepId);
-        if (!step) return;
-
-        step.completed = !step.completed;
-        step.completedAt = step.completed ? getFormattedDate() : null;
-
-        evaluateGoalCompletion(goal);
-        saveData();
-    }
-
-    function evaluateGoalCompletion(goal) {
-        if (goal.steps.length > 0) {
-            const allDone = goal.steps.every(s => s.completed);
-            goal.completed = allDone;
-            goal.completedAt = allDone ? getFormattedDate() : null;
+        function deleteStep(goalId, stepId) {
+            const goal = goals.find(g => g.id === goalId);
+            if (!goal) return;
+            goal.steps = goal.steps.filter(s => s.id !== stepId);
+            evaluateGoalCompletion(goal);
+            saveData();
         }
-    }
 
-    renderApp();
-</script>
+        function toggleStep(goalId, stepId) {
+            const goal = goals.find(g => g.id === goalId);
+            if (!goal) return;
+            const step = goal.steps.find(s => s.id === stepId);
+            if (!step) return;
+
+            step.completed = !step.completed;
+            step.completedAt = step.completed ? getFormattedDate() : null;
+
+            evaluateGoalCompletion(goal);
+            saveData();
+        }
+
+        function evaluateGoalCompletion(goal) {
+            if (goal.steps.length > 0) {
+                const allDone = goal.steps.every(s => s.completed);
+                goal.completed = allDone;
+                goal.completedAt = allDone ? getFormattedDate() : null;
+            }
+        }
+
+        renderApp();
+    </script>
+</body>
+</html>
